@@ -6,9 +6,11 @@ callers. The development project combines a React console, Keycloak, Spring Boot
 PostgreSQL, OpenFGA and OPA in a Docker Compose local lab; this candidate supplies
 a narrower offline review and testing scope.
 
-**Publication scope: offline implementation review and security regression.** This
-candidate is unpublished and has no Git history. It includes human/machine IAM,
-resource authorization, selected tests and sanitized configuration examples.
+**Publication scope: offline implementation review and security regression.** The
+sanitized reference is [published on GitHub](https://github.com/rvarkali/enterprise-identity-security-reference)
+with fresh publication history; the original development history is not included.
+It includes human/machine IAM, resource authorization, selected tests and sanitized
+configuration examples.
 It does not include a runnable Compose deployment, the gateway, administrative
 processes, lifecycle implementation or live acceptance tooling.
 
@@ -17,11 +19,11 @@ IAM platform**. Source implementation, offline regression, isolated rehearsals a
 historical live observations are distinguished below. Successful tests do not
 establish publication readiness or authorize deployment.
 
-## Publication gate
+## Publication status
 
-**Prepared for owner review; not approved or published.** This is a derivative
-of one development implementation, not a second IAM implementation. Only the
-offline implementation and regression scope is intended for publication.
+**Published as an offline reference implementation.** This is a derivative of one
+development implementation, not a second IAM implementation. Publication covers
+the offline implementation and regression scope, not a runnable deployment.
 
 The owner confirms local-Mac-only development, no external deployment, no future
 deployment plans, and no reuse outside this project of the four exposed credential
@@ -34,13 +36,14 @@ and zero active IAM Docker port bindings. All 56 IAM containers, 27 volumes and
 10 networks were preserved. Persistent credential/session state may remain.
 CRED-001 through CRED-004 remain **OPEN_RISK_ACCEPTED**, not technically remediated:
 no rotation, invalidation or verified revocation is claimed. Risk acceptance
-supports preparing this offline portfolio; it does not authorize restarting the
-runtime or publishing the candidate.
+is the documented disposition for this published offline portfolio; it does not
+authorize restarting the runtime or establish credential remediation.
 
-The [publication manifest](docs/security/publication-manifest.json) is
-**PROVISIONAL**, excludes its own hash, and records exact payload paths, hashes and
-validation evidence. Exact-artifact approval and approval for fresh Git
-initialization remain pending. No historical Git content will be copied.
+The [publication manifest](docs/security/publication-manifest.json)
+excludes its own hash and Git metadata, and records exact payload paths, hashes and
+validation evidence. It distinguishes the published baseline from the current
+documentation revision; local edits are not automatically committed or published.
+The original development Git history remains excluded.
 See the [current validation record](docs/security/portfolio-validation-summary.md)
 and [credential disposition](docs/security/public-credential-exposure-response.md).
 
@@ -242,7 +245,8 @@ TLS material is disposable and distinct from operational PKI.
 A fresh lab would require a separately reviewed complete deployment package,
 external credentials, new storage and deployment acceptance. Never apply source
 examples to the protected development environment. The owner plans no deployment. Historical exposure remains documented under
-explicit residual-risk acceptance; publication still requires separate approval.
+explicit residual-risk acceptance. Publication does not establish live deployment
+acceptance or credential invalidation.
 
 ## Engineering skills demonstrated
 

@@ -4,8 +4,10 @@ Updated **2026-10-22 UTC** (2026-10-21 America/Los_Angeles) for final publicatio
 preparation. **All four findings remain OPEN_RISK_ACCEPTED.** This records an
 owner risk decision and verified stop-only containment, not credential rotation,
 cryptographic invalidation, account disabling or verified session/token revocation.
-The candidate remains unpublished; exact-artifact and Git-initialization approval
-are separate next steps.
+Post-publication status reviewed **2026-10-22 America/Los_Angeles**: the sanitized
+offline reference is [published on GitHub](https://github.com/rvarkali/enterprise-identity-security-reference)
+with fresh publication history. Publication does not change the credential
+dispositions below. This documentation review does not commit or push changes.
 
 ## Evidence and scope
 
@@ -19,7 +21,8 @@ are separate next steps.
 
 This is one implementation: the private development repository and its derived,
 sanitized offline publication candidate. Operational secrets, private PKI, raw
-evidence, runtime configuration, database data and Git history are excluded.
+evidence, runtime configuration, database data and original development Git
+history are excluded. Fresh publication history exists in the public repository.
 Private support records are referenced only by sanitized evidence category.
 
 ## Per-finding disposition
@@ -40,7 +43,8 @@ account modification, database inspection or session/grant revocation was perfor
 No finding is CLOSED_WITH_EVIDENCE, technically remediated or proven compromised.
 The operator's accepted-risk publication path replaces the earlier requirement
 that all four findings first be technically closed; it does not change their open
-technical status or grant permission to publish this artifact.
+technical status. Publication has since occurred; risk acceptance is not evidence
+of credential invalidation or authorization to reactivate the runtime.
 
 ## Containment and persistent-state limitations
 
@@ -81,17 +85,18 @@ reconciliation as a shortcut: the development source includes undeployed changes
 Any newly discovered reuse or exposure beyond the accepted scope reopens the
 owner's risk decision and requires a new response assessment.
 
-## Publication decision and remaining approvals
+## Publication status and remaining security limitations
 
-The owner has selected private retention of the original repository and a reviewed
-fresh-history offline portfolio for a new repository. No original history, live
-configuration or protected evidence is part of that publication path.
+The owner has published the reviewed fresh-history offline portfolio and confirms
+private retention of the original repository. Read-only GitHub metadata confirms
+the public repository is nonempty with a main branch. No original development
+history, live configuration or protected evidence is part of that publication.
 
 Current disposition: **residual risk accepted by the owner; technical findings
-remain open; candidate prepared for separate approval**. Current validation must
-pass, the exact manifest/payload must be reviewed, and local Git initialization
-must be explicitly approved before it occurs. A commit or push requires separate
-authorization. Neither this document nor risk acceptance is permission to publish.
+remain open; sanitized offline reference published**. The manifest records payload
+integrity and distinguishes this local documentation revision from the published
+baseline. No commit or push is performed by this review. Publication does not
+authorize Docker deployment, runtime restoration or further operational actions.
 
 Optional future technical closure requires recorded, finding-specific evidence of
 credential/account invalidation or an approved permanent-retirement and retained-

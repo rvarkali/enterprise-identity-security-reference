@@ -5,9 +5,12 @@ stop-only runtime containment and owner-reported risk decisions. Final preparati
 was reviewed on **2026-10-22 UTC** (2026-10-21 America/Los_Angeles). This is not a
 security certification, credential revocation record or deployment acceptance.
 The candidate is one sanitized derivative of the development implementation.
-It remains unpublished and awaits exact-artifact and Git-initialization approval.
+Post-publication status reviewed **2026-10-22 America/Los_Angeles**: the sanitized
+offline reference is [published on GitHub](https://github.com/rvarkali/enterprise-identity-security-reference)
+with fresh publication history. This documentation review does not rerun tests,
+perform live acceptance, commit changes or push updates.
 
-## Current final-preparation execution — CURRENTLY_VERIFIED
+## Retained final-preparation execution — VERIFIED_OFFLINE
 
 The supported runner was inspected before execution. Its explicit selection uses
 mocked dependencies, test-owned temporary JWKS/TLS servers and generated synthetic
@@ -30,7 +33,7 @@ network-isolation certification.
 | Tool versions | Python 3.14.6; JDK 21.0.10; Maven 3.9.16 |
 | Cache / execution prerequisites | Required parent POMs and build-plugin families present; successful Maven offline execution confirmed remaining cache sufficiency |
 | Local permissions | Previously established sandbox socket restriction; approved escalation used for test-owned local sockets |
-| Candidate/test identity | 47-file regression input inventory; SHA-256 below and in the provisional manifest |
+| Candidate/test identity | 47-file regression input inventory; SHA-256 below and in the manifest |
 
 Regression input SHA-256:
 `43e773331ea77961e70c171e4c4a07379998901a6ed48db95a9bbc7cdf5d7433`.
@@ -73,29 +76,31 @@ state. The current owner decision supersedes the previous insufficient-evidence
 publication hold with an explicit accepted-risk preparation path, without claiming
 technical remediation. See the [per-finding disposition](public-credential-exposure-response.md).
 
-## Publication preparation gate
+## Publication status and evidence boundaries
 
 | Label | Current evidence boundary |
 |---|---|
 | IMPLEMENTED | Included human/machine authentication and ordered authorization source |
 | HISTORICALLY_TESTED | Prior isolated/live observations and earlier offline runs below |
-| CURRENTLY_VERIFIED | Current 259-test offline run; final bounded scan, local links and manifest verification; preceding stop-only metadata result has its own scope |
+| VERIFIED_OFFLINE | Retained 259-test final-preparation run; execution window and test-input identity recorded above; no test rerun in this documentation review |
+| CURRENTLY_VERIFIED | Post-publication repository metadata, local documentation links and manifest integrity; earlier scan and stop-only evidence retain their original scope |
 | OPERATOR_REPORTED | Local-only scope, credential non-reuse, no future deployment, original repository Private visibility and residual-risk acceptance |
 | EXCLUDED | Compose, gateway, administration/lifecycle implementation, live acceptance, runtime configuration and protected PKI/evidence |
 | NOT_VERIFIED | Credential validity, invalidation/revocation, preserved account/session contents and deployment equivalence |
 
-The new target repository `rvarkali/enterprise-identity-security-reference` was
-checked through read-only GitHub metadata: **PUBLIC, empty, no default branch**.
-This is a point-in-time check; recheck for remote changes before any future push.
-No repository content was uploaded or overwritten. The original repository was
-not modified and its Private visibility is attributed to the owner.
+Read-only GitHub metadata now confirms `rvarkali/enterprise-identity-security-reference`
+is **PUBLIC and nonempty, with default branch main**. Its main-branch commit matched
+the clean local checkout at the start of this review. The earlier empty-repository
+observation was a pre-publication check and is no longer the current status.
+No repository content was uploaded or overwritten by this review. The original
+repository was not modified; its Private visibility remains owner-reported.
 
-The [manifest](publication-manifest.json) remains **PROVISIONAL** until the exact
-artifact is approved. It hashes all 88 payload files and excludes itself, for 89
-candidate files total. The existing MIT license remains owner-approved. Preparation
-is technically eligible for owner review under the recorded risk acceptance;
-Git initialization, commits, pushes and publication have not been authorized or
-performed. Runtime restart is outside this offline publication scope.
+The [manifest](publication-manifest.json) hashes all 88 payload files and excludes
+itself and Git metadata, for 89 publication files total. It records the published
+baseline separately from this local documentation revision. Documentation hashes
+change with these edits; the 47-file regression input identity is unchanged.
+The existing MIT license remains owner-approved. These local edits are not yet
+committed or pushed. Runtime restart remains outside the offline publication scope.
 
 ## Candidate scope
 
@@ -215,8 +220,9 @@ client tests do not establish live end-to-end PostgreSQL–OpenFGA–OPA accepta
 - **Publication is separate:** historical exposure persists as an accepted residual
   risk. Non-reuse and original Private visibility are owner-reported; credential
   invalidation is not established. All four findings remain technically open.
-  Exact-artifact approval and approval for Git initialization remain pending;
-  nothing has been committed, pushed or published.
+  The sanitized offline reference has been published with fresh history. This
+  documentation revision does not change technical credential status or establish
+  production readiness, live integration acceptance or deployment authorization.
 
 See the threat model (development-repository reference; omitted from this candidate) and
 Zero Trust architecture (development-repository reference; omitted from this candidate) for additional trust assumptions.

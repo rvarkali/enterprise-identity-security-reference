@@ -14,22 +14,22 @@
   "candidate_identity": "enterprise-iam-publication-candidate",
   "changes_in_this_task": [
     {
-      "baseline_sha256": "9bed96456d38306151d6bd809541ae803607e42cf6438813757beccb7e7798d7",
-      "current_sha256": "c9cbb1044fa7eb3164565181612e939c55144755ca80653eae2a68b6c38ecc05",
+      "baseline_sha256": "c9cbb1044fa7eb3164565181612e939c55144755ca80653eae2a68b6c38ecc05",
+      "current_sha256": "bfdbe245ceb6acd2c79247c161c83edce5589abc2e70314470d7935a38a1b2ef",
       "path": "README.md",
-      "reason": "Record owner scope, non-reuse and residual-risk acceptance; stopped runtime and retained storage; preserve offline-only scope."
+      "reason": "Replace stale unpublished/no-history/approval wording with published offline-reference status and current manifest scope."
     },
     {
-      "baseline_sha256": "fa1a3b46b46df65c4225da004f47fe783502e1b3f925942c023b4467a17ef1ee",
-      "current_sha256": "baf83bce3ec70c4e5480728e29c7fdc57185c2597f9ab81481e21e83e1b0d268",
-      "path": "docs/security/public-credential-exposure-response.md",
-      "reason": "Replace superseded insufficient-evidence planning with current per-finding OPEN_RISK_ACCEPTED disposition and explicit non-invalidation boundaries."
-    },
-    {
-      "baseline_sha256": "39b770b6b0ac209435afb06dd491f0451817dcb8e84c9fadc6a84e3faf1dca2b",
-      "current_sha256": "bc1f9959ecefdb96db580a14a8a0bc1053f9fac852481d8c0a2f58075e0aeab9",
+      "baseline_sha256": "bc1f9959ecefdb96db580a14a8a0bc1053f9fac852481d8c0a2f58075e0aeab9",
+      "current_sha256": "34cdc72c67d7276019e1f65044afc761dc4c5197cf556a78b97e282fc99a92d3",
       "path": "docs/security/portfolio-validation-summary.md",
-      "reason": "Record fresh final-preparation regression, prior verified stop-only evidence, owner statements and read-only empty-target check."
+      "reason": "Update repository/publication status; retain dated 187 Java and 72 Python results without implying a new test run."
+    },
+    {
+      "baseline_sha256": "baf83bce3ec70c4e5480728e29c7fdc57185c2597f9ab81481e21e83e1b0d268",
+      "current_sha256": "ec8b050f82b02ae21bea7f56cdbb22aeb1bc43ab65a51392e890c50d2d9d6b32",
+      "path": "docs/security/public-credential-exposure-response.md",
+      "reason": "Record publication without changing OPEN_RISK_ACCEPTED or claiming credential invalidation."
     }
   ],
   "credential_disposition": {
@@ -103,7 +103,7 @@
     "source_hardening_is_invalidation_evidence": false
   },
   "explicit_exclusions": [
-    "Existing Git history, objects, references and remotes",
+    "Inherited development Git history and objects; fresh publication Git metadata is outside the hashed payload inventory",
     "compose.yaml and compose.machine-tls.yaml",
     "Gateway deployment implementation and additional deployment initialization",
     "Administrative/lifecycle implementation and live acceptance tooling",
@@ -135,7 +135,7 @@
       },
       {
         "path": "README.md",
-        "sha256": "c9cbb1044fa7eb3164565181612e939c55144755ca80653eae2a68b6c38ecc05"
+        "sha256": "bfdbe245ceb6acd2c79247c161c83edce5589abc2e70314470d7935a38a1b2ef"
       },
       {
         "path": "apps/api/Dockerfile",
@@ -415,11 +415,11 @@
       },
       {
         "path": "docs/security/portfolio-validation-summary.md",
-        "sha256": "bc1f9959ecefdb96db580a14a8a0bc1053f9fac852481d8c0a2f58075e0aeab9"
+        "sha256": "34cdc72c67d7276019e1f65044afc761dc4c5197cf556a78b97e282fc99a92d3"
       },
       {
         "path": "docs/security/public-credential-exposure-response.md",
-        "sha256": "baf83bce3ec70c4e5480728e29c7fdc57185c2597f9ab81481e21e83e1b0d268"
+        "sha256": "ec8b050f82b02ae21bea7f56cdbb22aeb1bc43ab65a51392e890c50d2d9d6b32"
       },
       {
         "path": "identity/keycloak/realm-import/iam-realm.json",
@@ -472,11 +472,11 @@
     ],
     "manifest_file_count": 1,
     "manifest_path": "docs/security/publication-manifest.json",
-    "path_convention": "POSIX paths relative to candidate root; sorted lexicographically.",
+    "path_convention": "POSIX paths relative to the publication repository root; sorted lexicographically; .git excluded.",
     "payload_file_count": 88,
     "payload_inventory_hash_convention": "SHA-256 of UTF-8 Python json.dumps(included_files, sort_keys=True, separators=(',', ':')); entries contain only path and sha256.",
-    "payload_inventory_sha256": "b5d22c2fca0df0b329fc3e13053b97258fb756e677208e2d06737bdb0aae9e79",
-    "self_hash_policy": "The manifest is excluded from the hashed payload inventory. There are 88 hashed payload files plus this manifest.",
+    "payload_inventory_sha256": "7421ecf608925217c84458d6c7d800fcd89a8d6bdd4cddc80b88e04e8d791c17",
+    "self_hash_policy": "The manifest and Git metadata are excluded from the hashed payload inventory. There are 88 hashed payload files plus this manifest, excluding .git.",
     "total_file_count": 89
   },
   "known_limitations": [
@@ -485,7 +485,7 @@
     "Native OPA/OpenFGA checks skipped because executables are unavailable",
     "Historical isolated/live evidence is not current deployment acceptance",
     "Bounded scanning is not proof of absence of every secret or vulnerability",
-    "No Git initialization, commit, push or publication performed"
+    "Published offline reference only; this local documentation revision is uncommitted and unpushed; publication does not authorize deployment"
   ],
   "license": {
     "approval_evidence": "Owner supplied the copyright holder in response to the current task's MIT license approval question.",
@@ -494,14 +494,14 @@
     "status": "COMPLETE_OWNER_APPROVED",
     "type": "MIT"
   },
-  "manifest_status": "PROVISIONAL",
-  "not_frozen_reason": "Exact-artifact review and approval for local Git initialization remain pending. Owner risk acceptance is recorded; all four credential findings remain technically open. Any payload edit requires regenerated hashes.",
+  "manifest_status": "POST_PUBLICATION_WORKING_COPY",
+  "not_frozen_reason": "The offline reference is published. This manifest describes the local documentation revision, not a newly published artifact. Further payload edits require regenerated hashes; Git metadata and the manifest itself are excluded.",
   "preservation": {
     "commits_or_pushes": false,
     "credential_retrieval_or_rotation": false,
     "live_service_or_docker_operations": false,
     "operational_pki_access": false,
-    "scope": "Current final publication preparation only; prior authorized Docker stop is recorded separately.",
+    "scope": "Current post-publication documentation review only; prior publication and authorized Docker stop are separate events.",
     "source_application_edits": false,
     "source_git_changes": false,
     "source_status_index_references_unchanged": true
@@ -552,28 +552,40 @@
   "publication_approval": {
     "credential_gate": "OWNER_ACCEPTED_RESIDUAL_RISK_FINDINGS_TECHNICALLY_OPEN",
     "current_remote_visibility": "NEW_TARGET_PUBLIC_VERIFIED; ORIGINAL_PRIVATE_OPERATOR_REPORTED",
-    "decision": "TECHNICALLY_PREPARED_PENDING_OWNER_APPROVAL",
+    "current_revision_published": false,
+    "decision": "PUBLISHED_OFFLINE_REFERENCE_UNDER_OWNER_RISK_ACCEPTANCE",
     "destination": {
-      "defaultBranch": null,
+      "defaultBranch": "main",
       "git_url": "https://github.com/rvarkali/enterprise-identity-security-reference.git",
-      "isEmpty": true,
+      "isEmpty": false,
       "nameWithOwner": "rvarkali/enterprise-identity-security-reference",
-      "observation_scope": "Read-only metadata check during final preparation; not a reservation against future remote changes.",
+      "observation_scope": "Post-publication read-only metadata check; remote main matched the starting local HEAD.",
       "recheck_before_push": true,
       "url": "https://github.com/rvarkali/enterprise-identity-security-reference",
-      "verification_method": "Read-only gh repo view metadata; no upload or remote mutation.",
+      "verification_method": "Read-only gh repo view and GitHub main-ref metadata; no fetch, upload or remote mutation.",
       "visibility": "PUBLIC"
     },
-    "exact_artifact_owner_approval": "NOT_RECEIVED",
-    "git_initialization": "NOT_PERFORMED_APPROVAL_REQUIRED",
+    "exact_artifact_owner_approval": "Owner confirms prior publication; this local documentation revision is not committed or pushed.",
+    "git_initialization": "FRESH_PUBLICATION_HISTORY_EXISTS",
     "historical_visibility_context": "Historical public exposure acknowledged; original repository now Private according to owner.",
     "old_repository_disposition": "RETAIN_PRIVATELY_OWNER_CONFIRMED",
-    "published": false,
-    "status": "NOT_APPROVED_FOR_PUBLICATION"
+    "published": true,
+    "status": "PUBLISHED_BASELINE_LOCAL_DOCUMENTATION_REVISION"
+  },
+  "published_baseline": {
+    "branch": "main",
+    "commit": "3074835f6fab35fc939cc66a867f0867432444de",
+    "manifest_sha256": "0209a3317e5ca09738cf7a61df67e985bf9acaf3b0e4cd83041de33aa6fac884",
+    "payload_inventory_sha256": "b5d22c2fca0df0b329fc3e13053b97258fb756e677208e2d06737bdb0aae9e79",
+    "repository_url": "https://github.com/rvarkali/enterprise-identity-security-reference",
+    "review_date": "2026-10-22",
+    "review_timezone": "America/Los_Angeles",
+    "verification": "Read-only GitHub main ref matched the clean local checkout before documentation edits."
   },
   "schema_version": "1.0",
   "source_comparison": {
     "application_code_differences": false,
+    "evidence_scope": "Retained source comparison from publication preparation; only the documented candidate-only documentation differences changed in this review.",
     "intentional_differences": [
       {
         "path": "LICENSE",
@@ -581,15 +593,15 @@
       },
       {
         "path": "README.md",
-        "reason": "Record owner scope, non-reuse and residual-risk acceptance; stopped runtime and retained storage; preserve offline-only scope."
+        "reason": "Replace stale unpublished/no-history/approval wording with published offline-reference status and current manifest scope."
       },
       {
         "path": "docs/security/portfolio-validation-summary.md",
-        "reason": "Record fresh final-preparation regression, prior verified stop-only evidence, owner statements and read-only empty-target check."
+        "reason": "Update repository/publication status; retain dated 187 Java and 72 Python results without implying a new test run."
       },
       {
         "path": "docs/security/public-credential-exposure-response.md",
-        "reason": "Replace superseded insufficient-evidence planning with current per-finding OPEN_RISK_ACCEPTED disposition and explicit non-invalidation boundaries."
+        "reason": "Record publication without changing OPEN_RISK_ACCEPTED or claiming credential invalidation."
       },
       {
         "path": "infrastructure/testing/README.md",
@@ -605,57 +617,35 @@
   },
   "source_implementation": "enterprise-iam-reference",
   "validation": {
+    "documentation_review": {
+      "broken_markdown_links": 0,
+      "configured_remote": true,
+      "credential_dispositions_unchanged": true,
+      "inherited_development_history": false,
+      "local_git_history": true,
+      "local_revision_committed_or_pushed": false,
+      "markdown_links_checked": 40,
+      "payload_file_count": 88,
+      "published_baseline_matches_starting_local_head": true,
+      "regression_rerun": false,
+      "review_date": "2026-10-22",
+      "review_timezone": "America/Los_Angeles",
+      "scope": "Publication-status documentation and manifest only",
+      "status": "PASS",
+      "test_input_identity_unchanged": true,
+      "total_files_excluding_git": 89
+    },
     "manifest_verification": {
       "deterministic_json": true,
       "payload_hashes_match": true,
+      "scope": "Current working-copy payload; published baseline identity recorded separately.",
       "self_hash_excluded": true,
       "status": "PASS",
       "test_input_identity_matches": true,
       "total_files": 89
     },
-    "overall_status": "PASS_BOUNDED_FINAL_PREPARATION_NOT_PUBLICATION_APPROVAL",
-    "regression": {
-      "command": "python3 infrastructure/testing/security_regression.py",
-      "completed_utc": "2026-10-22T05:29:45Z",
-      "exit_status": 0,
-      "java": {
-        "errors": 0,
-        "failures": 0,
-        "passed": 187,
-        "skipped": 0
-      },
-      "java_selection": "JAVA21_HOME explicitly selected the installed full JDK 21; no sensitive local path included.",
-      "network_scope": "Test-owned local fixtures only; no live IAM or external service access.",
-      "optional_checks": {
-        "fga": "SKIPPED_UNAVAILABLE",
-        "opa": "SKIPPED_UNAVAILABLE"
-      },
-      "permission_note": "Previously established sandbox local-socket restriction; reviewed runner executed with approved escalation.",
-      "preflight_attempt": "Initial invocation rejected the inherited Java 25 selection before tests ran; corrected JDK selection passed.",
-      "python": {
-        "errors": 0,
-        "failures": 0,
-        "modules": {
-          "test_deploy": 4,
-          "test_fixtures": 9,
-          "test_generate": 3,
-          "test_machine_keycloak": 56
-        },
-        "passed": 72,
-        "skipped": 0
-      },
-      "started_utc": "2026-10-22T05:29:23Z",
-      "test_input_count": 47,
-      "test_input_sha256": "43e773331ea77961e70c171e4c4a07379998901a6ed48db95a9bbc7cdf5d7433",
-      "timestamp_scope": "Observed execution window including command approval/completion observation.",
-      "tool_versions": {
-        "java": "21.0.10",
-        "maven": "3.9.16",
-        "python": "3.14.6"
-      },
-      "workspace": "Temporary runner-owned workspace; no candidate build outputs."
-    },
-    "security_scan": {
+    "overall_status": "PASS_POST_PUBLICATION_DOCUMENTATION_REVIEW_NO_TEST_RERUN",
+    "prepublication_security_scan": {
       "broken_markdown_links": 0,
       "candidate_git_history": false,
       "candidate_remote": false,
@@ -664,6 +654,7 @@
       "directory_mode": "0700",
       "entropy_review": "No unresolved findings; package-lock integrity fields treated as dependency metadata.",
       "evidence_note": "Current pattern, entropy, configuration-aware and sanitized manual fixture review; no operational credentials accessed.",
+      "evidence_scope": "Historical final-preparation scan before Git initialization/publication; Git/remote flags describe that earlier state, not the current repository.",
       "excluded_runtime_material": 0,
       "file_count_scanned": 89,
       "file_mode": "0600",
@@ -725,6 +716,47 @@
       "unexpected_binaries": 0,
       "unresolved_sensitive_content_findings": 0,
       "unsafe_links": 0
+    },
+    "regression": {
+      "command": "python3 infrastructure/testing/security_regression.py",
+      "completed_utc": "2026-10-22T05:29:45Z",
+      "exit_status": 0,
+      "java": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 187,
+        "skipped": 0
+      },
+      "java_selection": "JAVA21_HOME explicitly selected the installed full JDK 21; no sensitive local path included.",
+      "network_scope": "Test-owned local fixtures only; no live IAM or external service access.",
+      "optional_checks": {
+        "fga": "SKIPPED_UNAVAILABLE",
+        "opa": "SKIPPED_UNAVAILABLE"
+      },
+      "permission_note": "Previously established sandbox local-socket restriction; reviewed runner executed with approved escalation.",
+      "preflight_attempt": "Initial invocation rejected the inherited Java 25 selection before tests ran; corrected JDK selection passed.",
+      "python": {
+        "errors": 0,
+        "failures": 0,
+        "modules": {
+          "test_deploy": 4,
+          "test_fixtures": 9,
+          "test_generate": 3,
+          "test_machine_keycloak": 56
+        },
+        "passed": 72,
+        "skipped": 0
+      },
+      "started_utc": "2026-10-22T05:29:23Z",
+      "test_input_count": 47,
+      "test_input_sha256": "43e773331ea77961e70c171e4c4a07379998901a6ed48db95a9bbc7cdf5d7433",
+      "timestamp_scope": "Observed execution window including command approval/completion observation.",
+      "tool_versions": {
+        "java": "21.0.10",
+        "maven": "3.9.16",
+        "python": "3.14.6"
+      },
+      "workspace": "Temporary runner-owned workspace; no candidate build outputs."
     },
     "test_input_hash_convention": "SHA-256 of UTF-8 Python json.dumps(sorted test-input path/sha256 entries, sort_keys=True, separators=(',', ':')); sorted by path. Includes optional policy/model fixtures without claiming their native execution.",
     "test_input_paths": [
