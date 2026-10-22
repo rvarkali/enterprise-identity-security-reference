@@ -1,0 +1,79 @@
+erDiagram
+    TENANTS ||--o{ TENANT_PRINCIPALS : contains
+    PRINCIPALS ||--o{ TENANT_PRINCIPALS : belongs_to
+    PRINCIPALS ||--o{ PRINCIPAL_IDENTITIES : authenticates_as
+    TENANTS ||--o{ TEAMS : owns
+    TENANTS ||--o{ PROJECTS : owns
+    PROJECTS ||--o{ DOCUMENTS : contains
+    TENANTS ||--o{ AGENT_DELEGATIONS : scopes
+    PRINCIPALS ||--o{ AGENT_DELEGATIONS : delegator
+    PRINCIPALS ||--o{ AGENT_DELEGATIONS : agent
+    TENANTS ||--o{ AUDIT_EVENTS : records
+    TENANTS ||--o{ SECURITY_FINDINGS : identifies
+    TENANTS ||--o{ JIT_REQUESTS : governs
+    TENANTS ||--o{ ACCESS_REVIEWS : reviews
+    TENANTS {
+      uuid id PK
+      text slug UK
+      text status
+    }
+    PRINCIPALS {
+      uuid id PK
+      text kind
+      text status
+    }
+    PRINCIPAL_IDENTITIES {
+      uuid id PK
+      uuid principal_id FK
+      text issuer
+      text subject
+    }
+    TENANT_PRINCIPALS {
+      uuid tenant_id PK,FK
+      uuid principal_id PK,FK
+      text status
+    }
+    TEAMS {
+      uuid id PK
+      uuid tenant_id FK
+      text name
+    }
+    PROJECTS {
+      uuid id PK
+      uuid tenant_id FK
+      text name
+    }
+    DOCUMENTS {
+      uuid id PK
+      uuid tenant_id FK
+      uuid project_id FK
+      text classification
+    }
+    AGENT_DELEGATIONS {
+      uuid id PK
+      uuid tenant_id FK
+      uuid delegator_id FK
+      uuid agent_id FK
+      text action
+      timestamptz expires_at
+    }
+    AUDIT_EVENTS {
+      uuid id PK
+      uuid tenant_id FK
+      text outcome
+    }
+    SECURITY_FINDINGS {
+      uuid id PK
+      uuid tenant_id FK
+      text severity
+    }
+    JIT_REQUESTS {
+      uuid id PK
+      uuid tenant_id FK
+      timestamptz expires_at
+    }
+    ACCESS_REVIEWS {
+      uuid id PK
+      uuid tenant_id FK
+      text status
+    }

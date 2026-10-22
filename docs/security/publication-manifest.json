@@ -1,0 +1,780 @@
+{
+  "artifact_scope": "Offline-only IAM implementation review and bounded security regression; one implementation with a derived publication snapshot.",
+  "baseline": {
+    "baseline_inventory_sha256": "d8312d2dd37a3004bd51c4afb7462aa9db7efc5f77807ffd7ca27531efe4c610",
+    "baseline_manifest_sha256": "3c79a8e9444802274a57d75e10eabf1d0f8c96a714a7241533467997919fda57",
+    "candidate_payload_file_count": 88,
+    "directory_permissions": "0700",
+    "file_permissions": "0600",
+    "intentional_documentation_difference_count": 5,
+    "source_identical_count": 83,
+    "source_tracked_file_count": 206,
+    "verified_against_previous_assessment": true
+  },
+  "candidate_identity": "enterprise-iam-publication-candidate",
+  "changes_in_this_task": [
+    {
+      "baseline_sha256": "9bed96456d38306151d6bd809541ae803607e42cf6438813757beccb7e7798d7",
+      "current_sha256": "c9cbb1044fa7eb3164565181612e939c55144755ca80653eae2a68b6c38ecc05",
+      "path": "README.md",
+      "reason": "Record owner scope, non-reuse and residual-risk acceptance; stopped runtime and retained storage; preserve offline-only scope."
+    },
+    {
+      "baseline_sha256": "fa1a3b46b46df65c4225da004f47fe783502e1b3f925942c023b4467a17ef1ee",
+      "current_sha256": "baf83bce3ec70c4e5480728e29c7fdc57185c2597f9ab81481e21e83e1b0d268",
+      "path": "docs/security/public-credential-exposure-response.md",
+      "reason": "Replace superseded insufficient-evidence planning with current per-finding OPEN_RISK_ACCEPTED disposition and explicit non-invalidation boundaries."
+    },
+    {
+      "baseline_sha256": "39b770b6b0ac209435afb06dd491f0451817dcb8e84c9fadc6a84e3faf1dca2b",
+      "current_sha256": "bc1f9959ecefdb96db580a14a8a0bc1053f9fac852481d8c0a2f58075e0aeab9",
+      "path": "docs/security/portfolio-validation-summary.md",
+      "reason": "Record fresh final-preparation regression, prior verified stop-only evidence, owner statements and read-only empty-target check."
+    }
+  ],
+  "credential_disposition": {
+    "checklist_path": "docs/security/public-credential-exposure-response.md",
+    "findings": [
+      {
+        "category": "POSTGRESQL",
+        "id": "CRED-001",
+        "invalidation": "NOT_ESTABLISHED",
+        "reuse": "OWNER_CONFIRMED_NO_REUSE_OUTSIDE_PROJECT",
+        "revocation": "NOT_VERIFIED",
+        "risk_acceptance": "OWNER_ACCEPTED_HISTORICAL_EXPOSURE_RESIDUAL_RISK",
+        "runtime_validity": "UNKNOWN",
+        "status": "OPEN_RISK_ACCEPTED"
+      },
+      {
+        "category": "KEYCLOAK_ADMINISTRATOR",
+        "id": "CRED-002",
+        "invalidation": "NOT_ESTABLISHED",
+        "reuse": "OWNER_CONFIRMED_NO_REUSE_OUTSIDE_PROJECT",
+        "revocation": "NOT_VERIFIED",
+        "risk_acceptance": "OWNER_ACCEPTED_HISTORICAL_EXPOSURE_RESIDUAL_RISK",
+        "runtime_validity": "UNKNOWN",
+        "status": "OPEN_RISK_ACCEPTED"
+      },
+      {
+        "category": "DEMO_ACCOUNT_1",
+        "id": "CRED-003",
+        "invalidation": "NOT_ESTABLISHED",
+        "reuse": "OWNER_CONFIRMED_NO_REUSE_OUTSIDE_PROJECT",
+        "revocation": "NOT_VERIFIED",
+        "risk_acceptance": "OWNER_ACCEPTED_HISTORICAL_EXPOSURE_RESIDUAL_RISK",
+        "runtime_validity": "UNKNOWN",
+        "status": "OPEN_RISK_ACCEPTED"
+      },
+      {
+        "category": "DEMO_ACCOUNT_2",
+        "id": "CRED-004",
+        "invalidation": "NOT_ESTABLISHED",
+        "reuse": "OWNER_CONFIRMED_NO_REUSE_OUTSIDE_PROJECT",
+        "revocation": "NOT_VERIFIED",
+        "risk_acceptance": "OWNER_ACCEPTED_HISTORICAL_EXPOSURE_RESIDUAL_RISK",
+        "runtime_validity": "UNKNOWN",
+        "status": "OPEN_RISK_ACCEPTED"
+      }
+    ],
+    "operator_closure_evidence": "NO_TECHNICAL_CLOSURE; owner scope/non-reuse and risk-acceptance statement plus preceding verified stop-only execution.",
+    "overall_status": "OWNER_RISK_ACCEPTED_TECHNICALLY_OPEN",
+    "runtime_retirement": {
+      "approved_containers_stopped": 8,
+      "classification": "VERIFIED_STOP_ONLY_METADATA_AT_RECORDED_OPERATION",
+      "credential_invalidation_claimed": false,
+      "evidence_reference": "Preceding authorized stop-only execution and post-stop Docker metadata report",
+      "iam_active_published_bindings_after_stop": 0,
+      "iam_containers_preserved": 56,
+      "iam_networks_preserved": 10,
+      "iam_running_after_stop": 0,
+      "iam_volumes_preserved": 27,
+      "persistent_state": "RETAINED_NOT_INSPECTED",
+      "refreshed_during_this_preparation": false,
+      "unrelated_containers_unchanged": 12
+    },
+    "scope": {
+      "classification": "OPERATOR_REPORTED",
+      "development": "LOCAL_MAC_ONLY",
+      "evidence_reference": "Owner Final Publication Preparation request, 2026-10-22 UTC",
+      "external_deployment": "NEVER",
+      "future_deployment": "NOT_PLANNED",
+      "non_reuse": "CONFIRMED_BY_OWNER_FOR_ALL_FOUR_CATEGORIES"
+    },
+    "source_hardening_is_invalidation_evidence": false
+  },
+  "explicit_exclusions": [
+    "Existing Git history, objects, references and remotes",
+    "compose.yaml and compose.machine-tls.yaml",
+    "Gateway deployment implementation and additional deployment initialization",
+    "Administrative/lifecycle implementation and live acceptance tooling",
+    "Runtime environment files and live credential inputs",
+    "Operational private keys, certificates, certificate stores and protected PKI",
+    "Database dumps, credential backups and archives",
+    "Protected/raw evidence, runtime logs and deployment state",
+    "Generated build outputs, dependency caches and unexpected binaries",
+    "Symlinks and other unsafe filesystem links"
+  ],
+  "inventory": {
+    "hash_algorithm": "SHA-256",
+    "included_files": [
+      {
+        "path": ".env.example",
+        "sha256": "5191f37a09be0c8a07effb0712180e992e82252e3ac3d083a83836ded951b9b9"
+      },
+      {
+        "path": ".github/workflows/README.md",
+        "sha256": "d65a003f6972715ded79c015eb10a2e6abe8c77d4990e9e22aab7d43bdb9f274"
+      },
+      {
+        "path": ".gitignore",
+        "sha256": "fbd6a7cbee7182568d1af68f9370819075fbb733eb80c198e73801c03ffa42c7"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "9bf32d76267759693443edd8c7819c452f2495002af7f49c6f651f6097ec18df"
+      },
+      {
+        "path": "README.md",
+        "sha256": "c9cbb1044fa7eb3164565181612e939c55144755ca80653eae2a68b6c38ecc05"
+      },
+      {
+        "path": "apps/api/Dockerfile",
+        "sha256": "007879b221ad522cef085908f5d81f51f125bef6c4326a8b307436048f79a786"
+      },
+      {
+        "path": "apps/api/pom.xml",
+        "sha256": "16793595bbd3789c6d2cd22ccd01319641be8a2cb35e042be0e74f6022596617"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/IamApplication.java",
+        "sha256": "409795febc685fc4631b376869430464eb98116c8a80ba9106287b814d908ecd"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/PrincipalResolver.java",
+        "sha256": "bbbf876cd90117fa3554f2884633a29f9c3d8b05bc6f79682daf16e0de80ed23"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/SecurityConfig.java",
+        "sha256": "4247ffb00d0f04d5f71b48b56195961b3b193ea6b2be35137a4b41220b623b2c"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/TenantController.java",
+        "sha256": "4051ccc506ab51172143fec2032287ee9f35c5ebe299c1e6a602db431468d3f9"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/authorization/AuthorizationResult.java",
+        "sha256": "64231dda594bc13094b8516be5f625c66f7dbad376aeac476cae03e34f671bce"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/authorization/AuthorizationService.java",
+        "sha256": "37d1db38446409b06499f89da4e33c506455f5f5b4614142a2f9bf922347618b"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/authorization/OpaClient.java",
+        "sha256": "86e723c402906ccb59f5ccf9bdaa03a03ae8dfcc95404c9033b051f6942f6002"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/authorization/OpaProperties.java",
+        "sha256": "52ef42472109a00ade61003fc616c1072955b266a71fb3ba8eeeb25cc0bbd6ef"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/authorization/OpenFgaClient.java",
+        "sha256": "a997cf8009910bad3f3305e63bdda43b42df9d4462f32b13559c7d3b0d0b8162"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/authorization/OpenFgaJoinerClient.java",
+        "sha256": "f4c4cb8cd70a31a8dbfacd56ba12d88e04c18a23efdfd1571ce4561d576b3793"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/authorization/OpenFgaProperties.java",
+        "sha256": "684e36f73b4f0a4c7bd4476d03e60b5242de7cd7f4b8ce82ea3e197562ce8ab9"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/machine/MachineCertificateBinding.java",
+        "sha256": "aaa2cc5623775c5eb4647f3dea944d3f5746bed55834c9e972987f77371a8634"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/machine/MachineListenerGuard.java",
+        "sha256": "d480cfc16e7da4280e27b5bd5e0b0c69019d5d4b1c60837c826fce327905bce6"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/machine/MachinePolicyController.java",
+        "sha256": "a72bdf9f2da1a2c00f170a867b669518a3ad46daebbc79a57db11e335cf8d9d8"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/machine/MachineSecurityConfiguration.java",
+        "sha256": "eaf565ee0224500bbd3285945ac8f9f020563426f0c7657396825ea187229e40"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/machine/MachineTlsConfiguration.java",
+        "sha256": "1dd1e43266c76d813be54b4ba0d51828f7752e2674de5ff295dd6da87464263e"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/machine/MachineTlsProperties.java",
+        "sha256": "de573f3b62defff0b69f8892e808b5da92140d5748687d566cc6b75a629ddba6"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/resources/ResourceController.java",
+        "sha256": "650e3396b2754bf5a27f4d08f22462d9bc6eaafd783c4a765349f958df15f720"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/resources/ResourceReadService.java",
+        "sha256": "b9d31249acb18e8d797509c8f8a126e99005a7bc9ee27ab28a16ef5b570a07f9"
+      },
+      {
+        "path": "apps/api/src/main/java/dev/portfolio/iam/resources/ResourceRepository.java",
+        "sha256": "62c2b14b881cc2fab77834fa429a7405b16ebd29b246df2b82b7a55f0f97e4e9"
+      },
+      {
+        "path": "apps/api/src/main/resources/application.yaml",
+        "sha256": "8d85e2fd77def35863e9a453b731c5376a708c7bf18652a97b173207df46b69f"
+      },
+      {
+        "path": "apps/api/src/test/java/dev/portfolio/iam/HumanJwtSecurityChainTest.java",
+        "sha256": "1dd3f13781e6b481c32920a4e3d21f45f6c37b1e8c661ecdb955e3ef6204e4b9"
+      },
+      {
+        "path": "apps/api/src/test/java/dev/portfolio/iam/authorization/AuthorizationServiceTest.java",
+        "sha256": "9e61ecb2a4708c0da0cd7ecd98ae129882d5b6c704a74518e6e3b3dc76a6293f"
+      },
+      {
+        "path": "apps/api/src/test/java/dev/portfolio/iam/authorization/OpaClientTest.java",
+        "sha256": "c4e4b9b0dc1bc567c4d2d614c2e635ad956224947e33b42b9815ae81e3c3a788"
+      },
+      {
+        "path": "apps/api/src/test/java/dev/portfolio/iam/authorization/OpenFgaClientTest.java",
+        "sha256": "9831a1ae94f7237a3ad8097035b3d743500a7a974d59af57a02b1e6f06031ecd"
+      },
+      {
+        "path": "apps/api/src/test/java/dev/portfolio/iam/authorization/ResourceEndpointsTest.java",
+        "sha256": "3f778fb74c0e63d447fb9cb73a86a250002b4e5cf1fe230c238cbd48625735c0"
+      },
+      {
+        "path": "apps/api/src/test/java/dev/portfolio/iam/machine/MachineCertificateBindingTest.java",
+        "sha256": "9b45509cbcd283a492be37e6343a28af9df115c4cff689f268f85e15778c6934"
+      },
+      {
+        "path": "apps/api/src/test/java/dev/portfolio/iam/machine/MachineSecurityChainTest.java",
+        "sha256": "8badad22fe59d3d5411b82d5a3b39484b0e4947139fc60392aa35a0ba8af19fd"
+      },
+      {
+        "path": "apps/api/src/test/java/dev/portfolio/iam/machine/MachineSecurityTest.java",
+        "sha256": "2e32097e2ad02d684e4da24d1bde0f6574eaf334adf917445e62c2617d3e2510"
+      },
+      {
+        "path": "apps/api/src/test/java/dev/portfolio/iam/machine/MachineTlsTest.java",
+        "sha256": "7c25e684839fedeeab61d200e320ece41d1e9fdbae30040075b0ac9f084db9c0"
+      },
+      {
+        "path": "apps/api/src/test/java/dev/portfolio/iam/resources/ResourceRepositoryTest.java",
+        "sha256": "ac8fdb22532efa42e80934d47d0471eef2a72ceb4249549601b76b5b885995cc"
+      },
+      {
+        "path": "apps/web/Dockerfile",
+        "sha256": "8429cc88ba62320e18a144fd438bfaab8eacab0c76fb5559628469b132480cb3"
+      },
+      {
+        "path": "apps/web/README.md",
+        "sha256": "f0c11914f9aa7620f3b6e94272b4b4972fc2a0d1f75e7f73f1e0660313ddf8eb"
+      },
+      {
+        "path": "apps/web/index.html",
+        "sha256": "3cbf60b561653ad5161602996b4525ccacbf223af0b64ed3988600e468a5f634"
+      },
+      {
+        "path": "apps/web/nginx.conf",
+        "sha256": "d6d5ac2209c58ab77980657e21c40c8f0daf3f8f03e2563718694ef738cb0629"
+      },
+      {
+        "path": "apps/web/package-lock.json",
+        "sha256": "ceea7aa701539299480249af4bd083f23db0ce5ca6b92288c513004e2badcfda"
+      },
+      {
+        "path": "apps/web/package.json",
+        "sha256": "a2f471152389a7f8105b5ed7510998cc14f0397d3c39e3b8c68d55e22a186622"
+      },
+      {
+        "path": "apps/web/src/AccessExplorer.tsx",
+        "sha256": "b989dda0faa630645f8761c7a8b5a5c4b7cdce1321a74b01a12875134b13445c"
+      },
+      {
+        "path": "apps/web/src/IdentityLifecycle.tsx",
+        "sha256": "f9b1812c671bf4c54785f64c40608ac8f4618a9bd87112ebd82b61a231e27f42"
+      },
+      {
+        "path": "apps/web/src/SecurityOverview.tsx",
+        "sha256": "4b331863f4987ab1515acb13109193034a981b85d24f12b19c506125c8927a4d"
+      },
+      {
+        "path": "apps/web/src/api.ts",
+        "sha256": "85e3eb0c0da61212d06e04a181305140dc9fede1c0d8f328511327bd8e9d9c23"
+      },
+      {
+        "path": "apps/web/src/auth.ts",
+        "sha256": "062abb5b2d493efb452906e7f58e4ea7a8f7b47c5cba3efbc85fbe1970628c7b"
+      },
+      {
+        "path": "apps/web/src/main.tsx",
+        "sha256": "6d4362bfa6fd3703d96703dd7bbce5e8f1daeffb88b0f10fd1052d2a5757ed5c"
+      },
+      {
+        "path": "apps/web/src/style.css",
+        "sha256": "3626ddd611a1a303b0ca92a49b8e775e8f587931aad131f09c1d004a34a73148"
+      },
+      {
+        "path": "apps/web/tsconfig.json",
+        "sha256": "f4f413ecc0eb49cffef7862310b35e61f653b248a58b841c45c22e236dd77f10"
+      },
+      {
+        "path": "apps/web/vite.config.ts",
+        "sha256": "3ee8a31e382dba7abec958894d55647c4f3f53330f471190d76a900f08bd9a4f"
+      },
+      {
+        "path": "authorization/opa/policies/access.rego",
+        "sha256": "7f4a84ba8940b7b1460f6b8dad5f6d879fbf8fba692744e1ad0506eaaed6c181"
+      },
+      {
+        "path": "authorization/opa/policies/assurance.json",
+        "sha256": "465fddd6589ca7e1a38e435f01eb763b644e41523c2b1254975a5d15ab77723e"
+      },
+      {
+        "path": "authorization/opa/tests/access_test.rego",
+        "sha256": "18c1014fa1502ea17b007a1f6ae6c446c2cd40c2bfefa2a1d09da7bd9c89b71c"
+      },
+      {
+        "path": "authorization/openfga/deploy.py",
+        "sha256": "edfe4a93aee5a78d0c7c52d6fb5f77141765d0a06db8d0c71f47a1199a996d8d"
+      },
+      {
+        "path": "authorization/openfga/fixtures.py",
+        "sha256": "afddb6f24317f79d2a36e56fba62ac9b50efe0ac92e26a2bf878fcabc57c4453"
+      },
+      {
+        "path": "authorization/openfga/model.fga",
+        "sha256": "8d0115b9e2459779fd39e2cd7958914839e23b8cd0a0d61a83aef734ee9b4bee"
+      },
+      {
+        "path": "authorization/openfga/model.fga.yaml",
+        "sha256": "352acad08b5b624ffffc8fa3750a8a0e9ac08d4a232a6d4401413fe188b035a8"
+      },
+      {
+        "path": "authorization/openfga/test_deploy.py",
+        "sha256": "c52c3edc110a55ce3be748537a5121f6aae984fbd29aa5268daa4e0366c803f8"
+      },
+      {
+        "path": "authorization/openfga/test_fixtures.py",
+        "sha256": "31004f01d4be0046b5c98a333b715f4190df95716e651d60ae1954427f92edf0"
+      },
+      {
+        "path": "authorization/openfga/tuples.yaml",
+        "sha256": "61b864c5688a637bd8ab4af73fd1d7c06f555428a4a2717d5f695d74b9307bd5"
+      },
+      {
+        "path": "docs/adr/ADR-001-scope.md",
+        "sha256": "503e86884b60dbf230905425f6b0209a89c1062ad407d0140ce538d70fc5b4d7"
+      },
+      {
+        "path": "docs/adr/ADR-002-authorization.md",
+        "sha256": "8eebb3151e10ed2fadf4330b655c598cd5bf3387f2884a75ec3974174cc9f82f"
+      },
+      {
+        "path": "docs/adr/ADR-003-data-ownership.md",
+        "sha256": "7cab6e4e5c9f208e45b6f4d021f0e610aa67609192e29ecf70a0e0677f4e3927"
+      },
+      {
+        "path": "docs/architecture/diagrams/09-identity-tenancy-er.mmd",
+        "sha256": "c66cbebe46c198f5edc7b3c3e7d96c046303520aaa815f7935ee2eaa375d49a4"
+      },
+      {
+        "path": "docs/requirements/IAM-REQ-v2.0.md",
+        "sha256": "f083b334024e4855a5c6a5b9c93441562f1cc2af864dd7ac7de6116a5f97d762"
+      },
+      {
+        "path": "docs/requirements/change-log.md",
+        "sha256": "4e9b2415aefcc35ccdbae06051be5060f2ac2ac89d5b832915efa0c28b0b4f53"
+      },
+      {
+        "path": "docs/requirements/functional-requirements.md",
+        "sha256": "c6f641b6a0cc67e4e4767fa565762dfe70a92fa8297891ae591f311c7f84edad"
+      },
+      {
+        "path": "docs/requirements/non-functional-requirements.md",
+        "sha256": "e2eddecf2f94fc05ac1626068b4bc89c4d350d9112f888ba50193b12a08b9648"
+      },
+      {
+        "path": "docs/requirements/requirements-traceability.md",
+        "sha256": "1fa876c5b3828662b0e275bf5707c35e1ee9f8fa408223bd938a32fecea52d4f"
+      },
+      {
+        "path": "docs/requirements/roadmap.md",
+        "sha256": "cdf595f431972f808f9a1bf1028e3cda786cd362a2133ddf19dde8a3f2afa9a0"
+      },
+      {
+        "path": "docs/requirements/scope-boundaries.md",
+        "sha256": "010c4a2fee2d7ecdcafe05216c26f6c65044e271c636a3492f779b8069419a52"
+      },
+      {
+        "path": "docs/security/portfolio-validation-summary.md",
+        "sha256": "bc1f9959ecefdb96db580a14a8a0bc1053f9fac852481d8c0a2f58075e0aeab9"
+      },
+      {
+        "path": "docs/security/public-credential-exposure-response.md",
+        "sha256": "baf83bce3ec70c4e5480728e29c7fdc57185c2597f9ab81481e21e83e1b0d268"
+      },
+      {
+        "path": "identity/keycloak/realm-import/iam-realm.json",
+        "sha256": "b66fcf66c16295592042f7bdc10946ee08478a47cce805bc8da38c7cc5848713"
+      },
+      {
+        "path": "identity/keycloak/test-fixtures/admin-realm.json",
+        "sha256": "d27b99df9833b21ba888b7715456a89c0229d6235621da60cb6901f69e90af60"
+      },
+      {
+        "path": "infrastructure/docker/configure-machine-keycloak.py",
+        "sha256": "7b9be6a9f4075c2849e97fa9b40282fd6cbe6b9a12426567a06719868466822f"
+      },
+      {
+        "path": "infrastructure/docker/init/00_create_openfga.sql",
+        "sha256": "249baa84617666a4cc9d7bc6e3f735aefc192c461a7a44b56b68dad2fe344a85"
+      },
+      {
+        "path": "infrastructure/docker/init/01_identity_schema.sql",
+        "sha256": "9eb7f3863844b91afc37b4c907ec5b994041585c5806ae788cab153cd1b2beeb"
+      },
+      {
+        "path": "infrastructure/docker/init/02_seed.sql",
+        "sha256": "6ba7741eee01f1ab3ed51081d257f0f14951cc5343b7019885a7b8c5e2326f8a"
+      },
+      {
+        "path": "infrastructure/docker/init/03_phase2_identities.sql",
+        "sha256": "fa74ded43337af0c513a34895588c6181fa49ccb1fcd5e3c34be5081d68173b5"
+      },
+      {
+        "path": "infrastructure/docker/pki/generate.py",
+        "sha256": "2443632d6c9047ed1704c78deba964f86bc92876a223cad0200776e9ff3c9a6f"
+      },
+      {
+        "path": "infrastructure/docker/pki/test_generate.py",
+        "sha256": "eab7fd8f46af6a2d417e8c1c9ad0ca4d05ab3617e88ef1b989856663133c43d5"
+      },
+      {
+        "path": "infrastructure/docker/test_machine_keycloak.py",
+        "sha256": "af646c537fe9750a9a4e3f51d0d5733cbd6020433b4ebfe13415a9796e99bbe4"
+      },
+      {
+        "path": "infrastructure/testing/README.md",
+        "sha256": "c93904fd5cf42f1a2d900f6d24054bc4b7c54455a194c793882ab1ba997ba038"
+      },
+      {
+        "path": "infrastructure/testing/security_regression.py",
+        "sha256": "e73d9ffd1433a2d5bf6f7de553318133fc7dce067c0a2141cd5c1149ea5da950"
+      }
+    ],
+    "manifest_file_count": 1,
+    "manifest_path": "docs/security/publication-manifest.json",
+    "path_convention": "POSIX paths relative to candidate root; sorted lexicographically.",
+    "payload_file_count": 88,
+    "payload_inventory_hash_convention": "SHA-256 of UTF-8 Python json.dumps(included_files, sort_keys=True, separators=(',', ':')); entries contain only path and sha256.",
+    "payload_inventory_sha256": "b5d22c2fca0df0b329fc3e13053b97258fb756e677208e2d06737bdb0aae9e79",
+    "self_hash_policy": "The manifest is excluded from the hashed payload inventory. There are 88 hashed payload files plus this manifest.",
+    "total_file_count": 89
+  },
+  "known_limitations": [
+    "Offline-only candidate; no supported deployment package or future deployment planned",
+    "Four credential findings remain technically open under explicit owner residual-risk acceptance; persistent runtime state retained",
+    "Native OPA/OpenFGA checks skipped because executables are unavailable",
+    "Historical isolated/live evidence is not current deployment acceptance",
+    "Bounded scanning is not proof of absence of every secret or vulnerability",
+    "No Git initialization, commit, push or publication performed"
+  ],
+  "license": {
+    "approval_evidence": "Owner supplied the copyright holder in response to the current task's MIT license approval question.",
+    "ownership_identifier_policy": "Copyright-holder name is recorded only in LICENSE, not in this manifest.",
+    "path": "LICENSE",
+    "status": "COMPLETE_OWNER_APPROVED",
+    "type": "MIT"
+  },
+  "manifest_status": "PROVISIONAL",
+  "not_frozen_reason": "Exact-artifact review and approval for local Git initialization remain pending. Owner risk acceptance is recorded; all four credential findings remain technically open. Any payload edit requires regenerated hashes.",
+  "preservation": {
+    "commits_or_pushes": false,
+    "credential_retrieval_or_rotation": false,
+    "live_service_or_docker_operations": false,
+    "operational_pki_access": false,
+    "scope": "Current final publication preparation only; prior authorized Docker stop is recorded separately.",
+    "source_application_edits": false,
+    "source_git_changes": false,
+    "source_status_index_references_unchanged": true
+  },
+  "previous_preparation": {
+    "manifest_sha256": "3c79a8e9444802274a57d75e10eabf1d0f8c96a714a7241533467997919fda57",
+    "payload_inventory_sha256": "d8312d2dd37a3004bd51c4afb7462aa9db7efc5f77807ffd7ca27531efe4c610",
+    "regression": {
+      "command": "python3 infrastructure/testing/security_regression.py",
+      "completed_utc": "2026-10-22T03:37:08.433965+00:00",
+      "exit_status": 0,
+      "java": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 187,
+        "skipped": 0
+      },
+      "network_scope": "Test-owned local fixtures only; no live IAM or external service access.",
+      "optional_checks": {
+        "fga": "SKIPPED_UNAVAILABLE_OUTSIDE_REQUIRED_P0_SCOPE",
+        "opa": "SKIPPED_UNAVAILABLE_OUTSIDE_REQUIRED_P0_SCOPE"
+      },
+      "permission_note": "Sandbox loopback bind preflight denied; reviewed runner executed with approved sandbox escalation.",
+      "python": {
+        "errors": 0,
+        "failures": 0,
+        "modules": {
+          "test_deploy": 4,
+          "test_fixtures": 9,
+          "test_generate": 3,
+          "test_machine_keycloak": 56
+        },
+        "passed": 72,
+        "skipped": 0
+      },
+      "started_utc": "2026-10-22T03:36:55.351935+00:00",
+      "test_input_count": 47,
+      "test_input_sha256": "43e773331ea77961e70c171e4c4a07379998901a6ed48db95a9bbc7cdf5d7433",
+      "tool_versions": {
+        "java": "21.0.10",
+        "maven": "3.9.16",
+        "python": "3.14.6"
+      },
+      "workspace": "Temporary runner-owned workspace; no candidate build outputs."
+    },
+    "scope": "Historical P0 preparation record; superseded by current validation and owner risk decision."
+  },
+  "publication_approval": {
+    "credential_gate": "OWNER_ACCEPTED_RESIDUAL_RISK_FINDINGS_TECHNICALLY_OPEN",
+    "current_remote_visibility": "NEW_TARGET_PUBLIC_VERIFIED; ORIGINAL_PRIVATE_OPERATOR_REPORTED",
+    "decision": "TECHNICALLY_PREPARED_PENDING_OWNER_APPROVAL",
+    "destination": {
+      "defaultBranch": null,
+      "git_url": "https://github.com/rvarkali/enterprise-identity-security-reference.git",
+      "isEmpty": true,
+      "nameWithOwner": "rvarkali/enterprise-identity-security-reference",
+      "observation_scope": "Read-only metadata check during final preparation; not a reservation against future remote changes.",
+      "recheck_before_push": true,
+      "url": "https://github.com/rvarkali/enterprise-identity-security-reference",
+      "verification_method": "Read-only gh repo view metadata; no upload or remote mutation.",
+      "visibility": "PUBLIC"
+    },
+    "exact_artifact_owner_approval": "NOT_RECEIVED",
+    "git_initialization": "NOT_PERFORMED_APPROVAL_REQUIRED",
+    "historical_visibility_context": "Historical public exposure acknowledged; original repository now Private according to owner.",
+    "old_repository_disposition": "RETAIN_PRIVATELY_OWNER_CONFIRMED",
+    "published": false,
+    "status": "NOT_APPROVED_FOR_PUBLICATION"
+  },
+  "schema_version": "1.0",
+  "source_comparison": {
+    "application_code_differences": false,
+    "intentional_differences": [
+      {
+        "path": "LICENSE",
+        "reason": "Completed the existing MIT license using the owner-approved copyright holder; source retains abbreviated text."
+      },
+      {
+        "path": "README.md",
+        "reason": "Record owner scope, non-reuse and residual-risk acceptance; stopped runtime and retained storage; preserve offline-only scope."
+      },
+      {
+        "path": "docs/security/portfolio-validation-summary.md",
+        "reason": "Record fresh final-preparation regression, prior verified stop-only evidence, owner statements and read-only empty-target check."
+      },
+      {
+        "path": "docs/security/public-credential-exposure-response.md",
+        "reason": "Replace superseded insufficient-evidence planning with current per-finding OPEN_RISK_ACCEPTED disposition and explicit non-invalidation boundaries."
+      },
+      {
+        "path": "infrastructure/testing/README.md",
+        "reason": "Previously approved candidate-specific offline execution boundary; unchanged in this P0 task."
+      }
+    ],
+    "new_candidate_only_files": [
+      "docs/security/publication-manifest.json"
+    ],
+    "source_differing_payload_files": 5,
+    "source_identical_payload_files": 83,
+    "source_only_tracked_files": 118
+  },
+  "source_implementation": "enterprise-iam-reference",
+  "validation": {
+    "manifest_verification": {
+      "deterministic_json": true,
+      "payload_hashes_match": true,
+      "self_hash_excluded": true,
+      "status": "PASS",
+      "test_input_identity_matches": true,
+      "total_files": 89
+    },
+    "overall_status": "PASS_BOUNDED_FINAL_PREPARATION_NOT_PUBLICATION_APPROVAL",
+    "regression": {
+      "command": "python3 infrastructure/testing/security_regression.py",
+      "completed_utc": "2026-10-22T05:29:45Z",
+      "exit_status": 0,
+      "java": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 187,
+        "skipped": 0
+      },
+      "java_selection": "JAVA21_HOME explicitly selected the installed full JDK 21; no sensitive local path included.",
+      "network_scope": "Test-owned local fixtures only; no live IAM or external service access.",
+      "optional_checks": {
+        "fga": "SKIPPED_UNAVAILABLE",
+        "opa": "SKIPPED_UNAVAILABLE"
+      },
+      "permission_note": "Previously established sandbox local-socket restriction; reviewed runner executed with approved escalation.",
+      "preflight_attempt": "Initial invocation rejected the inherited Java 25 selection before tests ran; corrected JDK selection passed.",
+      "python": {
+        "errors": 0,
+        "failures": 0,
+        "modules": {
+          "test_deploy": 4,
+          "test_fixtures": 9,
+          "test_generate": 3,
+          "test_machine_keycloak": 56
+        },
+        "passed": 72,
+        "skipped": 0
+      },
+      "started_utc": "2026-10-22T05:29:23Z",
+      "test_input_count": 47,
+      "test_input_sha256": "43e773331ea77961e70c171e4c4a07379998901a6ed48db95a9bbc7cdf5d7433",
+      "timestamp_scope": "Observed execution window including command approval/completion observation.",
+      "tool_versions": {
+        "java": "21.0.10",
+        "maven": "3.9.16",
+        "python": "3.14.6"
+      },
+      "workspace": "Temporary runner-owned workspace; no candidate build outputs."
+    },
+    "security_scan": {
+      "broken_markdown_links": 0,
+      "candidate_git_history": false,
+      "candidate_remote": false,
+      "completed_utc": "2026-10-22T05:34:43Z",
+      "configuration_review": "Example password inputs empty; realm definitions contain no nonempty credential fields; application credential/TLS contracts externally supplied.",
+      "directory_mode": "0700",
+      "entropy_review": "No unresolved findings; package-lock integrity fields treated as dependency metadata.",
+      "evidence_note": "Current pattern, entropy, configuration-aware and sanitized manual fixture review; no operational credentials accessed.",
+      "excluded_runtime_material": 0,
+      "file_count_scanned": 89,
+      "file_mode": "0600",
+      "limitations": "Bounded pattern, entropy and configuration review is not proof that every possible secret or vulnerability is absent. Synthetic fixtures and owner-approved license attribution are intentional; no values are included in scan findings.",
+      "markdown_links_checked": 40,
+      "pattern_methods": [
+        "Private-key/certificate blocks",
+        "JWT and common provider-token shapes",
+        "Credential-bearing URLs and secret assignments",
+        "Private local paths and private-address patterns",
+        "Runtime/artifact path categories"
+      ],
+      "payload_scan_status": "PASS_BOUNDED_REVIEW",
+      "synthetic_findings": [
+        {
+          "action": "RETAIN",
+          "category": "credential_url",
+          "disposition": "REVIEWED_SYNTHETIC_TEST_FIXTURE",
+          "line": 150,
+          "path": "apps/api/src/test/java/dev/portfolio/iam/authorization/OpaClientTest.java"
+        },
+        {
+          "action": "RETAIN",
+          "category": "credential_url",
+          "disposition": "REVIEWED_SYNTHETIC_TEST_FIXTURE",
+          "line": 206,
+          "path": "apps/api/src/test/java/dev/portfolio/iam/authorization/OpaClientTest.java"
+        },
+        {
+          "action": "RETAIN",
+          "category": "credential_url",
+          "disposition": "REVIEWED_SYNTHETIC_TEST_FIXTURE",
+          "line": 114,
+          "path": "apps/api/src/test/java/dev/portfolio/iam/authorization/OpenFgaClientTest.java"
+        },
+        {
+          "action": "RETAIN",
+          "category": "credential_url",
+          "disposition": "REVIEWED_SYNTHETIC_TEST_FIXTURE",
+          "line": 170,
+          "path": "apps/api/src/test/java/dev/portfolio/iam/authorization/OpenFgaClientTest.java"
+        },
+        {
+          "action": "RETAIN",
+          "category": "secret_assignment",
+          "disposition": "REVIEWED_SYNTHETIC_TEST_FIXTURE",
+          "line": 24,
+          "path": "apps/api/src/test/java/dev/portfolio/iam/machine/MachineTlsTest.java"
+        },
+        {
+          "action": "RETAIN",
+          "category": "secret_assignment",
+          "disposition": "REVIEWED_SYNTHETIC_TEST_FIXTURE",
+          "line": 26,
+          "path": "infrastructure/docker/test_machine_keycloak.py"
+        }
+      ],
+      "timestamp_scope": "Final review observation time; bounded scan repeated after manifest generation.",
+      "unexpected_binaries": 0,
+      "unresolved_sensitive_content_findings": 0,
+      "unsafe_links": 0
+    },
+    "test_input_hash_convention": "SHA-256 of UTF-8 Python json.dumps(sorted test-input path/sha256 entries, sort_keys=True, separators=(',', ':')); sorted by path. Includes optional policy/model fixtures without claiming their native execution.",
+    "test_input_paths": [
+      "apps/api/pom.xml",
+      "apps/api/src/main/java/dev/portfolio/iam/IamApplication.java",
+      "apps/api/src/main/java/dev/portfolio/iam/PrincipalResolver.java",
+      "apps/api/src/main/java/dev/portfolio/iam/SecurityConfig.java",
+      "apps/api/src/main/java/dev/portfolio/iam/TenantController.java",
+      "apps/api/src/main/java/dev/portfolio/iam/authorization/AuthorizationResult.java",
+      "apps/api/src/main/java/dev/portfolio/iam/authorization/AuthorizationService.java",
+      "apps/api/src/main/java/dev/portfolio/iam/authorization/OpaClient.java",
+      "apps/api/src/main/java/dev/portfolio/iam/authorization/OpaProperties.java",
+      "apps/api/src/main/java/dev/portfolio/iam/authorization/OpenFgaClient.java",
+      "apps/api/src/main/java/dev/portfolio/iam/authorization/OpenFgaJoinerClient.java",
+      "apps/api/src/main/java/dev/portfolio/iam/authorization/OpenFgaProperties.java",
+      "apps/api/src/main/java/dev/portfolio/iam/machine/MachineCertificateBinding.java",
+      "apps/api/src/main/java/dev/portfolio/iam/machine/MachineListenerGuard.java",
+      "apps/api/src/main/java/dev/portfolio/iam/machine/MachinePolicyController.java",
+      "apps/api/src/main/java/dev/portfolio/iam/machine/MachineSecurityConfiguration.java",
+      "apps/api/src/main/java/dev/portfolio/iam/machine/MachineTlsConfiguration.java",
+      "apps/api/src/main/java/dev/portfolio/iam/machine/MachineTlsProperties.java",
+      "apps/api/src/main/java/dev/portfolio/iam/resources/ResourceController.java",
+      "apps/api/src/main/java/dev/portfolio/iam/resources/ResourceReadService.java",
+      "apps/api/src/main/java/dev/portfolio/iam/resources/ResourceRepository.java",
+      "apps/api/src/main/resources/application.yaml",
+      "apps/api/src/test/java/dev/portfolio/iam/HumanJwtSecurityChainTest.java",
+      "apps/api/src/test/java/dev/portfolio/iam/authorization/AuthorizationServiceTest.java",
+      "apps/api/src/test/java/dev/portfolio/iam/authorization/OpaClientTest.java",
+      "apps/api/src/test/java/dev/portfolio/iam/authorization/OpenFgaClientTest.java",
+      "apps/api/src/test/java/dev/portfolio/iam/authorization/ResourceEndpointsTest.java",
+      "apps/api/src/test/java/dev/portfolio/iam/machine/MachineCertificateBindingTest.java",
+      "apps/api/src/test/java/dev/portfolio/iam/machine/MachineSecurityChainTest.java",
+      "apps/api/src/test/java/dev/portfolio/iam/machine/MachineSecurityTest.java",
+      "apps/api/src/test/java/dev/portfolio/iam/machine/MachineTlsTest.java",
+      "apps/api/src/test/java/dev/portfolio/iam/resources/ResourceRepositoryTest.java",
+      "authorization/opa/policies/access.rego",
+      "authorization/opa/policies/assurance.json",
+      "authorization/opa/tests/access_test.rego",
+      "authorization/openfga/deploy.py",
+      "authorization/openfga/fixtures.py",
+      "authorization/openfga/model.fga",
+      "authorization/openfga/model.fga.yaml",
+      "authorization/openfga/test_deploy.py",
+      "authorization/openfga/test_fixtures.py",
+      "authorization/openfga/tuples.yaml",
+      "infrastructure/docker/configure-machine-keycloak.py",
+      "infrastructure/docker/pki/generate.py",
+      "infrastructure/docker/pki/test_generate.py",
+      "infrastructure/docker/test_machine_keycloak.py",
+      "infrastructure/testing/security_regression.py"
+    ]
+  }
+}

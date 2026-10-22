@@ -1,0 +1,63 @@
+# secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+.idea/
+.vscode/
+node_modules/
+dist/
+build/
+target/
+.gradle/
+.DS_Store
+*.log
+coverage/
+
+# Development PKI (all artifacts, including public certificates and env files)
+.local-pki*/
+
+# Local runtime environments (keep .env.example and named example files visible)
+machine.env
+local.env
+runtime.env
+*.local.env
+*.env.local
+
+# Additional certificate stores and conventional SSH private-key filenames
+*.pfx
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+id_ecdsa_sk
+id_ed25519_sk
+
+# Local database exports and backup archives; do not ignore SQL source migrations
+/backups/
+/local-backups/
+/.local-backups*/
+local-backup*.dump
+local-backup*.sql
+local-backup*.sql.gz
+local-backup*.tar
+local-backup*.tar.gz
+local-backup*.tgz
+local-backup*.zip
+
+# Generated certificate bundles outside the existing protected PKI directories
+/.local-certificates*/
+/generated-certificates/
+local-*-bundle.crt
+local-*-bundle.cer
+local-*-bundle.p7b
+
+# Local evidence, deployment artifacts and temporary runtime configuration
+/generated-evidence/
+/.local-evidence*/
+/.local-deploy*/
+/local-deployment-artifacts/
+/.local-runtime*/

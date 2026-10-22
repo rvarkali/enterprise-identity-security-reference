@@ -1,0 +1,576 @@
+# Each scenario has isolated tuples. Revocation keeps resource grants unchanged.
+name: Phase 3.1 tenant authorization
+model_file: ./model.fga
+tests:
+  - name: alice-authorized-acme-projects
+    tuple_file: ./tuples.yaml
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:acme/viewer
+        assertions:
+          can_view: true
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:acme/editor
+        assertions:
+          can_view: true
+          can_edit: true
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:acme/owner
+        assertions:
+          can_view: true
+          can_edit: true
+          can_delete: true
+  - name: bob-authorized-globex-project
+    tuple_file: ./tuples.yaml
+    check:
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        object: project:globex/viewer
+        assertions:
+          can_view: true
+          can_edit: false
+          can_delete: false
+  - name: cross-tenant-denied
+    tuple_file: ./tuples.yaml
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:globex/viewer
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:globex/editor
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:globex/owner
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:globex/viewer/notes
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:globex/editor/notes
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:globex/owner/notes
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        object: project:acme/viewer
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        object: project:acme/editor
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        object: project:acme/owner
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        object: document:acme/viewer/notes
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        object: document:acme/editor/notes
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        object: document:acme/owner/notes
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+  - name: cross-tenant-explicit-grants-denied
+    tuple_file: ./tuples.yaml
+    tuples:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: owner
+        object: project:globex/private
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: editor
+        object: project:globex/private
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: project:globex/private
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: owner
+        object: document:globex/explicit-viewer
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: editor
+        object: document:globex/explicit-viewer
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: document:globex/explicit-viewer
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        relation: owner
+        object: project:acme/private
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        relation: editor
+        object: project:acme/private
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        relation: viewer
+        object: project:acme/private
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        relation: owner
+        object: document:acme/explicit-viewer
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        relation: editor
+        object: document:acme/explicit-viewer
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        relation: viewer
+        object: document:acme/explicit-viewer
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:globex/private
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:globex/explicit-viewer
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        object: project:acme/private
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        object: document:acme/explicit-viewer
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+  - name: project-permissions-inherit-to-documents
+    tuple_file: ./tuples.yaml
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/viewer/notes
+        assertions:
+          can_view: true
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/editor/notes
+        assertions:
+          can_view: true
+          can_edit: true
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/owner/notes
+        assertions:
+          can_view: true
+          can_edit: true
+          can_delete: true
+  - name: explicit-document-permissions
+    tuple_file: ./tuples.yaml
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/explicit-viewer
+        assertions:
+          can_view: true
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/explicit-editor
+        assertions:
+          can_view: true
+          can_edit: true
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/explicit-owner
+        assertions:
+          can_view: true
+          can_edit: true
+          can_delete: true
+  - name: membership-alone-does-not-grant-resource-access
+    tuple_file: ./tuples.yaml
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:acme/private
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/private/notes
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+  - name: tenant-permissions
+    tuple_file: ./tuples.yaml
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: tenant:acme
+        assertions:
+          can_view: true
+          can_manage: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: tenant:globex
+        assertions:
+          can_view: false
+          can_manage: false
+      - user: user:bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+        object: tenant:globex
+        assertions:
+          can_view: true
+          can_manage: false
+      - user: user:cccccccc-cccc-4ccc-8ccc-cccccccccccc
+        object: tenant:acme
+        assertions:
+          can_view: true
+          can_manage: true
+      - user: user:cccccccc-cccc-4ccc-8ccc-cccccccccccc
+        object: tenant:globex
+        assertions:
+          can_view: false
+          can_manage: false
+  - name: admin-without-member-tuple-manages-own-resources
+    tuple_file: ./tuples.yaml
+    check:
+      - user: user:cccccccc-cccc-4ccc-8ccc-cccccccccccc
+        object: project:acme/private
+        assertions:
+          can_view: true
+          can_edit: true
+          can_delete: true
+      - user: user:cccccccc-cccc-4ccc-8ccc-cccccccccccc
+        object: document:acme/private/notes
+        assertions:
+          can_view: true
+          can_edit: true
+          can_delete: true
+      - user: user:cccccccc-cccc-4ccc-8ccc-cccccccccccc
+        object: project:globex/private
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:cccccccc-cccc-4ccc-8ccc-cccccccccccc
+        object: document:globex/private/notes
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+  - name: member-before-removal
+    tuples:
+      - user: tenant:acme
+        relation: tenant
+        object: project:acme/stale
+      - user: project:acme/stale
+        relation: parent
+        object: document:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: owner
+        object: project:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: editor
+        object: project:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: project:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: owner
+        object: document:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: editor
+        object: document:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: document:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: member
+        object: tenant:acme
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:acme/stale
+        assertions:
+          can_view: true
+          can_edit: true
+          can_delete: true
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/stale
+        assertions:
+          can_view: true
+          can_edit: true
+          can_delete: true
+  - name: removed-member-stale-grants-denied
+    tuples:
+      - user: tenant:acme
+        relation: tenant
+        object: project:acme/stale
+      - user: project:acme/stale
+        relation: parent
+        object: document:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: owner
+        object: project:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: editor
+        object: project:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: project:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: owner
+        object: document:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: editor
+        object: document:acme/stale
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: document:acme/stale
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:acme/stale
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/stale
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+  - name: unknown-user-denied
+    tuple_file: ./tuples.yaml
+    check:
+      - user: user:dddddddd-dddd-4ddd-8ddd-dddddddddddd
+        object: project:acme/viewer
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:dddddddd-dddd-4ddd-8ddd-dddddddddddd
+        object: project:globex/owner
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:dddddddd-dddd-4ddd-8ddd-dddddddddddd
+        object: document:acme/explicit-viewer
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:dddddddd-dddd-4ddd-8ddd-dddddddddddd
+        object: document:globex/owner/notes
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:dddddddd-dddd-4ddd-8ddd-dddddddddddd
+        object: tenant:acme
+        assertions:
+          can_view: false
+          can_manage: false
+  - name: missing-ownership-links-fail-closed
+    tuple_file: ./tuples.yaml
+    tuples:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: owner
+        object: project:acme/orphan
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: owner
+        object: document:acme/orphan
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: owner
+        object: document:acme/parent-without-tenant
+      - user: project:acme/orphan
+        relation: parent
+        object: document:acme/parent-without-tenant
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:acme/orphan
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/orphan
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/parent-without-tenant
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+
+  - name: portfolio-mover-before
+    tuples:
+      - user: tenant:acme
+        relation: tenant
+        object: project:acme/move-demo
+      - user: project:acme/move-demo
+        relation: parent
+        object: document:acme/move-demo
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: project:acme/move-demo
+      - user: tenant:globex
+        relation: tenant
+        object: project:globex/move-demo
+      - user: project:globex/move-demo
+        relation: parent
+        object: document:globex/move-demo
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: project:globex/move-demo
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: member
+        object: tenant:acme
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:acme/move-demo
+        assertions:
+          can_view: true
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/move-demo
+        assertions:
+          can_view: true
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:globex/move-demo
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:globex/move-demo
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+
+  - name: portfolio-mover-revoked-gap
+    tuples:
+      - user: tenant:acme
+        relation: tenant
+        object: project:acme/move-demo
+      - user: project:acme/move-demo
+        relation: parent
+        object: document:acme/move-demo
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: project:acme/move-demo
+      - user: tenant:globex
+        relation: tenant
+        object: project:globex/move-demo
+      - user: project:globex/move-demo
+        relation: parent
+        object: document:globex/move-demo
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: project:globex/move-demo
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:acme/move-demo
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/move-demo
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:globex/move-demo
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:globex/move-demo
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+
+  - name: portfolio-mover-after
+    tuples:
+      - user: tenant:acme
+        relation: tenant
+        object: project:acme/move-demo
+      - user: project:acme/move-demo
+        relation: parent
+        object: document:acme/move-demo
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: project:acme/move-demo
+      - user: tenant:globex
+        relation: tenant
+        object: project:globex/move-demo
+      - user: project:globex/move-demo
+        relation: parent
+        object: document:globex/move-demo
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: viewer
+        object: project:globex/move-demo
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        relation: member
+        object: tenant:globex
+    check:
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:acme/move-demo
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:acme/move-demo
+        assertions:
+          can_view: false
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: project:globex/move-demo
+        assertions:
+          can_view: true
+          can_edit: false
+          can_delete: false
+      - user: user:aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+        object: document:globex/move-demo
+        assertions:
+          can_view: true
+          can_edit: false
+          can_delete: false

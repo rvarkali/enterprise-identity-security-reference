@@ -1,0 +1,34 @@
+model
+  schema 1.1
+
+type user
+
+type tenant
+  relations
+    define admin: [user]
+    define member: [user]
+    define can_view: member or admin
+    define can_manage: admin
+
+type project
+  relations
+    define tenant: [tenant]
+    define owner: [user]
+    define editor: [user]
+    define viewer: [user]
+    define tenant_member: can_view from tenant
+    define tenant_admin: can_manage from tenant
+    define can_view: (owner or editor or viewer or tenant_admin) and tenant_member
+    define can_edit: (owner or editor or tenant_admin) and tenant_member
+    define can_delete: (owner or tenant_admin) and tenant_member
+
+type document
+  relations
+    define parent: [project]
+    define owner: [user]
+    define editor: [user]
+    define viewer: [user]
+    define tenant_member: tenant_member from parent
+    define can_view: (owner or editor or viewer or can_view from parent) and tenant_member
+    define can_edit: (owner or editor or can_edit from parent) and tenant_member
+    define can_delete: (owner or can_delete from parent) and tenant_member

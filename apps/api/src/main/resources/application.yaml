@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: iam-api
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/iam}
+    username: ${SPRING_DATASOURCE_USERNAME:iam}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+iam:
+  machine:
+    subject: ${MACHINE_SERVICE_ACCOUNT_SUBJECT:}
+    certificate-uri: ${MACHINE_CERTIFICATE_URI:}
+    tls:
+      enabled: ${MACHINE_TLS_ENABLED:false}
+      port: ${MACHINE_TLS_PORT:8443}
+      key-store: ${MACHINE_TLS_KEY_STORE:}
+      key-store-password: ${MACHINE_TLS_KEY_STORE_PASSWORD:}
+      trust-store: ${MACHINE_TLS_TRUST_STORE:}
+      trust-store-password: ${MACHINE_TLS_TRUST_STORE_PASSWORD:}
+  issuer-uri: ${IAM_ISSUER_URI:http://localhost:8081/realms/iam-reference}
+  jwk-set-uri: ${IAM_JWK_SET_URI:http://localhost:8081/realms/iam-reference/protocol/openid-connect/certs}
+  audience: iam-api
+  lifecycle:
+    worker:
+      enabled: ${LIFECYCLE_WORKER_ENABLED:false}
+      authority: ${LIFECYCLE_WORKER_AUTHORITY:}
+      owner: ${LIFECYCLE_WORKER_OWNER:}
+    gateway:
+      socket-path: ${LIFECYCLE_GATEWAY_SOCKET:}
+      upstream: ${LIFECYCLE_GATEWAY_UPSTREAM:}
+      timeout: ${LIFECYCLE_GATEWAY_TIMEOUT:2s}
+    joiner:
+      enabled: ${LIFECYCLE_JOINER_ENABLED:false}
+      authority: ${LIFECYCLE_JOINER_AUTHORITY:}
+      issuer: ${LIFECYCLE_JOINER_ISSUER:}
+      tenant-ids: ${LIFECYCLE_JOINER_TENANT_IDS:}
+  opa:
+    api-url: ${OPA_API_URL:http://localhost:8181}
+    connect-timeout: ${OPA_CONNECT_TIMEOUT:1s}
+    request-timeout: ${OPA_REQUEST_TIMEOUT:2s}
+  openfga:
+    api-url: ${OPENFGA_API_URL:http://localhost:8082}
+    store-id: ${OPENFGA_STORE_ID:}
+    authorization-model-id: ${OPENFGA_AUTHORIZATION_MODEL_ID:}
+    connect-timeout: ${OPENFGA_CONNECT_TIMEOUT:1s}
+    request-timeout: ${OPENFGA_REQUEST_TIMEOUT:2s}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+server:
+  port: 8080

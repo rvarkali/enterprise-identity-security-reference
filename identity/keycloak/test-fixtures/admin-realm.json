@@ -1,0 +1,29 @@
+{
+  "realm": "iam-admin-isolated",
+  "enabled": true,
+  "registrationAllowed": false,
+  "accessTokenLifespan": 300,
+  "clients": [{
+    "clientId": "iam-admin-cli",
+    "protocol": "openid-connect",
+    "enabled": true,
+    "publicClient": true,
+    "standardFlowEnabled": true,
+    "directAccessGrantsEnabled": false,
+    "implicitFlowEnabled": false,
+    "serviceAccountsEnabled": false,
+    "fullScopeAllowed": false,
+    "redirectUris": ["http://127.0.0.1:49173/callback"],
+    "webOrigins": [],
+    "defaultClientScopes": ["basic"],
+    "optionalClientScopes": [],
+    "attributes": {"pkce.code.challenge.method": "S256", "access.token.lifespan": "300"},
+    "protocolMappers": [{
+      "name": "administrative-audience",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-audience-mapper",
+      "config": {"included.custom.audience": "iam-admin-approval", "access.token.claim": "true", "id.token.claim": "false"}
+    }]
+  }],
+  "users": []
+}
